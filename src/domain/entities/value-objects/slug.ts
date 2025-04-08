@@ -6,13 +6,13 @@ export class Slug {
   }
 
   /**
-   * Creates a slug from a string.
+   * Creates a slug from a text.
    *
    * Example: "Example Title" => "example-title"
    *
-   * @param text{string} - The string to be converted to a slug.
+   * @param text{string} - The text to be converted to a slug.
    */
-  static createFromString(text: string): Slug {
+  static createFromText(text: string): Slug {
     const slugText = text
       .normalize("NFKD")
       .toLowerCase()
