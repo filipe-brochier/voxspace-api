@@ -23,13 +23,31 @@ export class Question extends Entity<QuestionProps> {
     return this.props.bestAnswerId
   }
 
+  set bestAnswerId(bestAnswerId: UniqueEntityID | undefined) {
+    this.props.bestAnswerId = bestAnswerId
+    this.touch()
+  }
+
   get title() {
     return this.props.title
+  }
+
+  set title(title: string) {
+    this.props.title = title
+    this.props.slug = Slug.createFromText(title)
+
+    this.touch()
   }
 
   get content() {
     return this.props.content
   }
+
+  set content(content: string) {
+    this.props.content = content
+    this.touch()
+  }
+
 
   get slug() {
     return this.props.slug
@@ -53,23 +71,6 @@ export class Question extends Entity<QuestionProps> {
 
   private touch() {
     this.props.updatedAt = new Date()
-  }
-
-  set title(title: string) {
-    this.props.title = title
-    this.props.slug = Slug.createFromText(title)
-
-    this.touch()
-  }
-
-  set content(content: string) {
-    this.props.content = content
-    this.touch()
-  }
-
-  set bestAnswerId(bestAnswerId: UniqueEntityID | undefined) {
-    this.props.bestAnswerId = bestAnswerId
-    this.touch()
   }
 
   static create(
